@@ -1,0 +1,524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0432016D1D3EDB0F00F3DFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432016C1D3EDB0F00F3DFD1 /* AppDelegate.swift */; };
+		0432016F1D3EDB0F00F3DFD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432016E1D3EDB0F00F3DFD1 /* ViewController.swift */; };
+		043201721D3EDB0F00F3DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201701D3EDB0F00F3DFD1 /* Main.storyboard */; };
+		043201741D3EDB0F00F3DFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043201731D3EDB0F00F3DFD1 /* Assets.xcassets */; };
+		043201771D3EDB0F00F3DFD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201751D3EDB0F00F3DFD1 /* LaunchScreen.storyboard */; };
+		043201821D3EDB0F00F3DFD1 /* Base_Tracker_UmpireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201811D3EDB0F00F3DFD1 /* Base_Tracker_UmpireTests.swift */; };
+		0432018D1D3EDB0F00F3DFD1 /* Base_Tracker_UmpireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432018C1D3EDB0F00F3DFD1 /* Base_Tracker_UmpireUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0432017E1D3EDB0F00F3DFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043201611D3EDB0F00F3DFD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 043201681D3EDB0F00F3DFD1;
+			remoteInfo = "Base Tracker Umpire";
+		};
+		043201891D3EDB0F00F3DFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043201611D3EDB0F00F3DFD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 043201681D3EDB0F00F3DFD1;
+			remoteInfo = "Base Tracker Umpire";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		043201691D3EDB0F00F3DFD1 /* Base Tracker Umpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Base Tracker Umpire.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0432016C1D3EDB0F00F3DFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0432016E1D3EDB0F00F3DFD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		043201711D3EDB0F00F3DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		043201731D3EDB0F00F3DFD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		043201761D3EDB0F00F3DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		043201781D3EDB0F00F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0432017D1D3EDB0F00F3DFD1 /* Base Tracker UmpireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Base Tracker UmpireTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		043201811D3EDB0F00F3DFD1 /* Base_Tracker_UmpireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base_Tracker_UmpireTests.swift; sourceTree = "<group>"; };
+		043201831D3EDB0F00F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043201881D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Base Tracker UmpireUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0432018C1D3EDB0F00F3DFD1 /* Base_Tracker_UmpireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base_Tracker_UmpireUITests.swift; sourceTree = "<group>"; };
+		0432018E1D3EDB0F00F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		043201661D3EDB0F00F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0432017A1D3EDB0F00F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201851D3EDB0F00F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		043201601D3EDB0F00F3DFD1 = {
+			isa = PBXGroup;
+			children = (
+				0432016B1D3EDB0F00F3DFD1 /* Base Tracker Umpire */,
+				043201801D3EDB0F00F3DFD1 /* Base Tracker UmpireTests */,
+				0432018B1D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests */,
+				0432016A1D3EDB0F00F3DFD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0432016A1D3EDB0F00F3DFD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				043201691D3EDB0F00F3DFD1 /* Base Tracker Umpire.app */,
+				0432017D1D3EDB0F00F3DFD1 /* Base Tracker UmpireTests.xctest */,
+				043201881D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0432016B1D3EDB0F00F3DFD1 /* Base Tracker Umpire */ = {
+			isa = PBXGroup;
+			children = (
+				0432016C1D3EDB0F00F3DFD1 /* AppDelegate.swift */,
+				0432016E1D3EDB0F00F3DFD1 /* ViewController.swift */,
+				043201701D3EDB0F00F3DFD1 /* Main.storyboard */,
+				043201731D3EDB0F00F3DFD1 /* Assets.xcassets */,
+				043201751D3EDB0F00F3DFD1 /* LaunchScreen.storyboard */,
+				043201781D3EDB0F00F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker Umpire";
+			sourceTree = "<group>";
+		};
+		043201801D3EDB0F00F3DFD1 /* Base Tracker UmpireTests */ = {
+			isa = PBXGroup;
+			children = (
+				043201811D3EDB0F00F3DFD1 /* Base_Tracker_UmpireTests.swift */,
+				043201831D3EDB0F00F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker UmpireTests";
+			sourceTree = "<group>";
+		};
+		0432018B1D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0432018C1D3EDB0F00F3DFD1 /* Base_Tracker_UmpireUITests.swift */,
+				0432018E1D3EDB0F00F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker UmpireUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		043201681D3EDB0F00F3DFD1 /* Base Tracker Umpire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201911D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker Umpire" */;
+			buildPhases = (
+				043201651D3EDB0F00F3DFD1 /* Sources */,
+				043201661D3EDB0F00F3DFD1 /* Frameworks */,
+				043201671D3EDB0F00F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Base Tracker Umpire";
+			productName = "Base Tracker Umpire";
+			productReference = 043201691D3EDB0F00F3DFD1 /* Base Tracker Umpire.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0432017C1D3EDB0F00F3DFD1 /* Base Tracker UmpireTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201941D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker UmpireTests" */;
+			buildPhases = (
+				043201791D3EDB0F00F3DFD1 /* Sources */,
+				0432017A1D3EDB0F00F3DFD1 /* Frameworks */,
+				0432017B1D3EDB0F00F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0432017F1D3EDB0F00F3DFD1 /* PBXTargetDependency */,
+			);
+			name = "Base Tracker UmpireTests";
+			productName = "Base Tracker UmpireTests";
+			productReference = 0432017D1D3EDB0F00F3DFD1 /* Base Tracker UmpireTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		043201871D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201971D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker UmpireUITests" */;
+			buildPhases = (
+				043201841D3EDB0F00F3DFD1 /* Sources */,
+				043201851D3EDB0F00F3DFD1 /* Frameworks */,
+				043201861D3EDB0F00F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0432018A1D3EDB0F00F3DFD1 /* PBXTargetDependency */,
+			);
+			name = "Base Tracker UmpireUITests";
+			productName = "Base Tracker UmpireUITests";
+			productReference = 043201881D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		043201611D3EDB0F00F3DFD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = MCJack123;
+				TargetAttributes = {
+					043201681D3EDB0F00F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+					};
+					0432017C1D3EDB0F00F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 043201681D3EDB0F00F3DFD1;
+					};
+					043201871D3EDB0F00F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 043201681D3EDB0F00F3DFD1;
+					};
+				};
+			};
+			buildConfigurationList = 043201641D3EDB0F00F3DFD1 /* Build configuration list for PBXProject "Base Tracker Umpire" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 043201601D3EDB0F00F3DFD1;
+			productRefGroup = 0432016A1D3EDB0F00F3DFD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				043201681D3EDB0F00F3DFD1 /* Base Tracker Umpire */,
+				0432017C1D3EDB0F00F3DFD1 /* Base Tracker UmpireTests */,
+				043201871D3EDB0F00F3DFD1 /* Base Tracker UmpireUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		043201671D3EDB0F00F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201771D3EDB0F00F3DFD1 /* LaunchScreen.storyboard in Resources */,
+				043201741D3EDB0F00F3DFD1 /* Assets.xcassets in Resources */,
+				043201721D3EDB0F00F3DFD1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0432017B1D3EDB0F00F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201861D3EDB0F00F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		043201651D3EDB0F00F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0432016F1D3EDB0F00F3DFD1 /* ViewController.swift in Sources */,
+				0432016D1D3EDB0F00F3DFD1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201791D3EDB0F00F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201821D3EDB0F00F3DFD1 /* Base_Tracker_UmpireTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201841D3EDB0F00F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0432018D1D3EDB0F00F3DFD1 /* Base_Tracker_UmpireUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0432017F1D3EDB0F00F3DFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 043201681D3EDB0F00F3DFD1 /* Base Tracker Umpire */;
+			targetProxy = 0432017E1D3EDB0F00F3DFD1 /* PBXContainerItemProxy */;
+		};
+		0432018A1D3EDB0F00F3DFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 043201681D3EDB0F00F3DFD1 /* Base Tracker Umpire */;
+			targetProxy = 043201891D3EDB0F00F3DFD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		043201701D3EDB0F00F3DFD1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				043201711D3EDB0F00F3DFD1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		043201751D3EDB0F00F3DFD1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				043201761D3EDB0F00F3DFD1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0432018F1D3EDB0F00F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		043201901D3EDB0F00F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		043201921D3EDB0F00F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Base Tracker Umpire/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-Umpire";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		043201931D3EDB0F00F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Base Tracker Umpire/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-Umpire";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		043201951D3EDB0F00F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Base Tracker UmpireTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-UmpireTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Base Tracker Umpire.app/Base Tracker Umpire";
+			};
+			name = Debug;
+		};
+		043201961D3EDB0F00F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Base Tracker UmpireTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-UmpireTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Base Tracker Umpire.app/Base Tracker Umpire";
+			};
+			name = Release;
+		};
+		043201981D3EDB0F00F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Base Tracker UmpireUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-UmpireUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Base Tracker Umpire";
+			};
+			name = Debug;
+		};
+		043201991D3EDB0F00F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Base Tracker UmpireUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-UmpireUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Base Tracker Umpire";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		043201641D3EDB0F00F3DFD1 /* Build configuration list for PBXProject "Base Tracker Umpire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0432018F1D3EDB0F00F3DFD1 /* Debug */,
+				043201901D3EDB0F00F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		043201911D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker Umpire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201921D3EDB0F00F3DFD1 /* Debug */,
+				043201931D3EDB0F00F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		043201941D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker UmpireTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201951D3EDB0F00F3DFD1 /* Debug */,
+				043201961D3EDB0F00F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		043201971D3EDB0F00F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker UmpireUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201981D3EDB0F00F3DFD1 /* Debug */,
+				043201991D3EDB0F00F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 043201611D3EDB0F00F3DFD1 /* Project object */;
+}
