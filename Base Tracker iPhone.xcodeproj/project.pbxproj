@@ -1,0 +1,524 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		043201B31D3EDBC400F3DFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */; };
+		043201B51D3EDBC400F3DFD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201B41D3EDBC400F3DFD1 /* ViewController.swift */; };
+		043201B81D3EDBC400F3DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201B61D3EDBC400F3DFD1 /* Main.storyboard */; };
+		043201BA1D3EDBC400F3DFD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043201B91D3EDBC400F3DFD1 /* Assets.xcassets */; };
+		043201BD1D3EDBC400F3DFD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201BB1D3EDBC400F3DFD1 /* LaunchScreen.storyboard */; };
+		043201C81D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201C71D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift */; };
+		043201D31D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201D21D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		043201C41D3EDBC400F3DFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043201A71D3EDBC400F3DFD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 043201AE1D3EDBC400F3DFD1;
+			remoteInfo = "Base Tracker iPhone";
+		};
+		043201CF1D3EDBC400F3DFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043201A71D3EDBC400F3DFD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 043201AE1D3EDBC400F3DFD1;
+			remoteInfo = "Base Tracker iPhone";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		043201AF1D3EDBC400F3DFD1 /* Base Tracker iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Base Tracker iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		043201B41D3EDBC400F3DFD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		043201B71D3EDBC400F3DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		043201B91D3EDBC400F3DFD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		043201BC1D3EDBC400F3DFD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		043201BE1D3EDBC400F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043201C31D3EDBC400F3DFD1 /* Base Tracker iPhoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Base Tracker iPhoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		043201C71D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base_Tracker_iPhoneTests.swift; sourceTree = "<group>"; };
+		043201C91D3EDBC400F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043201CE1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Base Tracker iPhoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		043201D21D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base_Tracker_iPhoneUITests.swift; sourceTree = "<group>"; };
+		043201D41D3EDBC400F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		043201AC1D3EDBC400F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201C01D3EDBC400F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201CB1D3EDBC400F3DFD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		043201A61D3EDBC400F3DFD1 = {
+			isa = PBXGroup;
+			children = (
+				043201B11D3EDBC400F3DFD1 /* Base Tracker iPhone */,
+				043201C61D3EDBC400F3DFD1 /* Base Tracker iPhoneTests */,
+				043201D11D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests */,
+				043201B01D3EDBC400F3DFD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		043201B01D3EDBC400F3DFD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				043201AF1D3EDBC400F3DFD1 /* Base Tracker iPhone.app */,
+				043201C31D3EDBC400F3DFD1 /* Base Tracker iPhoneTests.xctest */,
+				043201CE1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		043201B11D3EDBC400F3DFD1 /* Base Tracker iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */,
+				043201B41D3EDBC400F3DFD1 /* ViewController.swift */,
+				043201B61D3EDBC400F3DFD1 /* Main.storyboard */,
+				043201B91D3EDBC400F3DFD1 /* Assets.xcassets */,
+				043201BB1D3EDBC400F3DFD1 /* LaunchScreen.storyboard */,
+				043201BE1D3EDBC400F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker iPhone";
+			sourceTree = "<group>";
+		};
+		043201C61D3EDBC400F3DFD1 /* Base Tracker iPhoneTests */ = {
+			isa = PBXGroup;
+			children = (
+				043201C71D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift */,
+				043201C91D3EDBC400F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker iPhoneTests";
+			sourceTree = "<group>";
+		};
+		043201D11D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests */ = {
+			isa = PBXGroup;
+			children = (
+				043201D21D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift */,
+				043201D41D3EDBC400F3DFD1 /* Info.plist */,
+			);
+			path = "Base Tracker iPhoneUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		043201AE1D3EDBC400F3DFD1 /* Base Tracker iPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201D71D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhone" */;
+			buildPhases = (
+				043201AB1D3EDBC400F3DFD1 /* Sources */,
+				043201AC1D3EDBC400F3DFD1 /* Frameworks */,
+				043201AD1D3EDBC400F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Base Tracker iPhone";
+			productName = "Base Tracker iPhone";
+			productReference = 043201AF1D3EDBC400F3DFD1 /* Base Tracker iPhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		043201C21D3EDBC400F3DFD1 /* Base Tracker iPhoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201DA1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneTests" */;
+			buildPhases = (
+				043201BF1D3EDBC400F3DFD1 /* Sources */,
+				043201C01D3EDBC400F3DFD1 /* Frameworks */,
+				043201C11D3EDBC400F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				043201C51D3EDBC400F3DFD1 /* PBXTargetDependency */,
+			);
+			name = "Base Tracker iPhoneTests";
+			productName = "Base Tracker iPhoneTests";
+			productReference = 043201C31D3EDBC400F3DFD1 /* Base Tracker iPhoneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		043201CD1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 043201DD1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneUITests" */;
+			buildPhases = (
+				043201CA1D3EDBC400F3DFD1 /* Sources */,
+				043201CB1D3EDBC400F3DFD1 /* Frameworks */,
+				043201CC1D3EDBC400F3DFD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				043201D01D3EDBC400F3DFD1 /* PBXTargetDependency */,
+			);
+			name = "Base Tracker iPhoneUITests";
+			productName = "Base Tracker iPhoneUITests";
+			productReference = 043201CE1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		043201A71D3EDBC400F3DFD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = MCJack123;
+				TargetAttributes = {
+					043201AE1D3EDBC400F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+					};
+					043201C21D3EDBC400F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 043201AE1D3EDBC400F3DFD1;
+					};
+					043201CD1D3EDBC400F3DFD1 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 94H887LKV9;
+						DevelopmentTeamName = "Jack Bruienne (Personal Team)";
+						ProvisioningStyle = Automatic;
+						TestTargetID = 043201AE1D3EDBC400F3DFD1;
+					};
+				};
+			};
+			buildConfigurationList = 043201AA1D3EDBC400F3DFD1 /* Build configuration list for PBXProject "Base Tracker iPhone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 043201A61D3EDBC400F3DFD1;
+			productRefGroup = 043201B01D3EDBC400F3DFD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				043201AE1D3EDBC400F3DFD1 /* Base Tracker iPhone */,
+				043201C21D3EDBC400F3DFD1 /* Base Tracker iPhoneTests */,
+				043201CD1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		043201AD1D3EDBC400F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201BD1D3EDBC400F3DFD1 /* LaunchScreen.storyboard in Resources */,
+				043201BA1D3EDBC400F3DFD1 /* Assets.xcassets in Resources */,
+				043201B81D3EDBC400F3DFD1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201C11D3EDBC400F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201CC1D3EDBC400F3DFD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		043201AB1D3EDBC400F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201B51D3EDBC400F3DFD1 /* ViewController.swift in Sources */,
+				043201B31D3EDBC400F3DFD1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201BF1D3EDBC400F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201C81D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		043201CA1D3EDBC400F3DFD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				043201D31D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		043201C51D3EDBC400F3DFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 043201AE1D3EDBC400F3DFD1 /* Base Tracker iPhone */;
+			targetProxy = 043201C41D3EDBC400F3DFD1 /* PBXContainerItemProxy */;
+		};
+		043201D01D3EDBC400F3DFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 043201AE1D3EDBC400F3DFD1 /* Base Tracker iPhone */;
+			targetProxy = 043201CF1D3EDBC400F3DFD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		043201B61D3EDBC400F3DFD1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				043201B71D3EDBC400F3DFD1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		043201BB1D3EDBC400F3DFD1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				043201BC1D3EDBC400F3DFD1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		043201D51D3EDBC400F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		043201D61D3EDBC400F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		043201D81D3EDBC400F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Base Tracker iPhone/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		043201D91D3EDBC400F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Base Tracker iPhone/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhone";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		043201DB1D3EDBC400F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Base Tracker iPhoneTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhoneTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Base Tracker iPhone.app/Base Tracker iPhone";
+			};
+			name = Debug;
+		};
+		043201DC1D3EDBC400F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Base Tracker iPhoneTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhoneTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Base Tracker iPhone.app/Base Tracker iPhone";
+			};
+			name = Release;
+		};
+		043201DE1D3EDBC400F3DFD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Base Tracker iPhoneUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhoneUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Base Tracker iPhone";
+			};
+			name = Debug;
+		};
+		043201DF1D3EDBC400F3DFD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Base Tracker iPhoneUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bruienne.cppconsole.Base-Tracker-iPhoneUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Base Tracker iPhone";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		043201AA1D3EDBC400F3DFD1 /* Build configuration list for PBXProject "Base Tracker iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201D51D3EDBC400F3DFD1 /* Debug */,
+				043201D61D3EDBC400F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		043201D71D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201D81D3EDBC400F3DFD1 /* Debug */,
+				043201D91D3EDBC400F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		043201DA1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201DB1D3EDBC400F3DFD1 /* Debug */,
+				043201DC1D3EDBC400F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		043201DD1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				043201DE1D3EDBC400F3DFD1 /* Debug */,
+				043201DF1D3EDBC400F3DFD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 043201A71D3EDBC400F3DFD1 /* Project object */;
+}
