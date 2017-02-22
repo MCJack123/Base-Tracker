@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0430AE7F1E4266D3002D1858 /* clipartbest-com-vpY0Qi-clipart.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0430AE7E1E4266D3002D1858 /* clipartbest-com-vpY0Qi-clipart.jpeg */; };
 		043201B31D3EDBC400F3DFD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */; };
 		043201B51D3EDBC400F3DFD1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201B41D3EDBC400F3DFD1 /* ViewController.swift */; };
 		043201B81D3EDBC400F3DFD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201B61D3EDBC400F3DFD1 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0430AE7E1E4266D3002D1858 /* clipartbest-com-vpY0Qi-clipart.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "clipartbest-com-vpY0Qi-clipart.jpeg"; sourceTree = "<group>"; };
 		043201AF1D3EDBC400F3DFD1 /* Base Tracker iPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Base Tracker iPhone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		043201B41D3EDBC400F3DFD1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */,
 				043201B41D3EDBC400F3DFD1 /* ViewController.swift */,
 				043201B61D3EDBC400F3DFD1 /* Main.storyboard */,
+				0430AE7E1E4266D3002D1858 /* clipartbest-com-vpY0Qi-clipart.jpeg */,
 				043201B91D3EDBC400F3DFD1 /* Assets.xcassets */,
 				043201BB1D3EDBC400F3DFD1 /* LaunchScreen.storyboard */,
 				043201BE1D3EDBC400F3DFD1 /* Info.plist */,
@@ -240,6 +243,7 @@
 			files = (
 				043201BD1D3EDBC400F3DFD1 /* LaunchScreen.storyboard in Resources */,
 				043201BA1D3EDBC400F3DFD1 /* Assets.xcassets in Resources */,
+				0430AE7F1E4266D3002D1858 /* clipartbest-com-vpY0Qi-clipart.jpeg in Resources */,
 				043201B81D3EDBC400F3DFD1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +505,7 @@
 				043201D91D3EDBC400F3DFD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		043201DA1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +514,7 @@
 				043201DC1D3EDBC400F3DFD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		043201DD1D3EDBC400F3DFD1 /* Build configuration list for PBXNativeTarget "Base Tracker iPhoneUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +523,7 @@
 				043201DF1D3EDBC400F3DFD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
