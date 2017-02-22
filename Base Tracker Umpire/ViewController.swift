@@ -19,7 +19,17 @@ class ViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
+	@IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+	private func createAndAddSwipeGesture()
+    {
+        swipeGesture.direction = UISwipeGestureRecognizerDirection.Left
+        view.addGestureRecognizer(swipeGesture)
+    }
 
+    @IBAction func handleSwipeLeft(recognizer:UIGestureRecognizer)
+    {
+        print(" Handle swipe left...")
 
+    }
 }
 
