@@ -67,12 +67,20 @@ class OverviewViewer: UIViewController {
 		let bar = UINavigationBar(frame: frame)
 		bar.items = [self.navigationItem]
 		self.view.addSubview(bar)
+        toolBar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), shareButton], animated: false)
+        
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
+    
+    func notSupported() {
+        let alert = UIAlertController(title: "Unimplemented!", message: "This feature is not supported in this version of Base Tracker.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: updateText)
+    }
 	
 	@IBOutlet var batSelector: UISegmentedControl!
 	@IBOutlet var strikesText: UILabel!
@@ -86,6 +94,7 @@ class OverviewViewer: UIViewController {
 	@IBOutlet var inningText: UILabel!
 	@IBOutlet var awayScoreText: UILabel!
 	@IBOutlet var homeScoreText: UILabel!
+    @IBOutlet weak var toolBar: UIToolbar!
 	
 	@IBAction func updateButton(_ sender: Any) {
 		updateText()
@@ -193,6 +202,7 @@ class OverviewViewer: UIViewController {
 		}
 		updateText()
 	}
+    var shareButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(OverviewViewer.notSupported))
 	
 }
 
