@@ -82,6 +82,7 @@ class OverViewController : UIViewController {
 	@IBOutlet var strikesText: UILabel!
 	@IBOutlet var ballsText: UILabel!
 	@IBOutlet var outsText: UILabel!
+    
 	
 	/*@IBOutlet var away1st: UILabel!
 	@IBOutlet var away2nd: UILabel!
