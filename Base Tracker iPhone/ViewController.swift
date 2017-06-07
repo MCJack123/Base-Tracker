@@ -21,7 +21,7 @@ var lastBases = bases
 var homeScore = 0
 var awayScore = 0
 var oppteamid = -1
-var checkCustomSave = [false, false]
+//var checkCustomSave = [false, false]
 
 func incWithMax(variable: Int, max: Int, min: Int = 0) -> Int {
 	if (variable + 1 > max) {
@@ -77,7 +77,7 @@ class OverviewViewer: UIViewController {
 	}
     
     func notSupported() {
-        let alert = UIAlertController(title: "Unimplemented!", message: "This feature is not supported in this version of Base Tracker.", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Unimplemented!", message: "This feature is not supported in this build of Base Tracker.", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: updateText)
     }
@@ -368,7 +368,7 @@ class HitController: UIViewController {
 	}
 	
 	@IBAction func customHit(_ sender: Any) {
-		let alert = UIAlertController(title: "Unimplemented!", message: "This feature is not supported in this version of Base Tracker.", preferredStyle: UIAlertControllerStyle.alert)
+		let alert = UIAlertController(title: "Unimplemented!", message: "This feature is not supported in this build of Base Tracker.", preferredStyle: UIAlertControllerStyle.alert)
 		alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: updateText)
 	}
@@ -573,41 +573,14 @@ class CustomController: UIViewController {
 			return
 		}
         print("Adding view")
-		let loginPageView = self.storyboard?.instantiateViewController(withIdentifier: "CheckController")
+		let loginPageView = self.storyboard?.instantiateViewController(withIdentifier: "CheckController") as! CheckController?
         if (loginPageView == nil) {
             print("CheckController is not defined! setting breakpoint here")
             print("Error")
         }
+        loginPageView!.tmpController = self
         print("Presenting")
         self.present(loginPageView!, animated: true, completion: nil)
-		while (true) {
-			if (checkCustomSave[0]) {break}
-		}
-		if (!checkCustomSave[1]) {return}
-		// Finish saving
-		bases[0] = first
-		bases[1] = second
-		bases[2] = third
-		if (inntop) {awayScore += runs}
-		else {homeScore += runs}
-		outs += outCheck
-		playerid += 1
-		// Exit
-        if (self.presentingViewController?.presentingViewController == nil) {
-            if (self.presentingViewController == nil) {
-                print("self.parent is not defined! setting breakpoint here")
-                print("Error")
-            } else {
-                print("self.parent.parent is not defined! setting breakpoint here")
-                print("Error")
-            }
-        }
-        print("breaking")
-		(self.presentingViewController?.presentingViewController as! OverviewViewer).updateText()
-		let tmpController : UIViewController! = self.presentingViewController;
-        self.dismiss(animated: true, completion: {()->Void in
-		tmpController.dismiss(animated: true, completion: nil);
-        })
 	}
 	
 }
@@ -615,6 +588,8 @@ class CustomController: UIViewController {
 class CheckController: UIViewController {
 
 	@IBOutlet var PlayerTable: UITableView!
+    var tmpController : CustomController? = nil
+    
 	override func viewDidLoad() {
         print("Loading")
 		super.viewDidLoad()
@@ -624,21 +599,46 @@ class CheckController: UIViewController {
 		bar.items = [self.navigationItem]
 		self.view.addSubview(bar)
         print("Getting presenter")
-		let tmpController : CustomController = self.presentingViewController! as! CustomController;
-		if (inntop) {
-			firstBase.text = tmpController.first > -1 ? "Player " + String(tmpController.first + 1) : " "
-			secondBase.text = tmpController.second > -1 ? "Player " + String(tmpController.second + 1) : " "
-			thirdBase.text = tmpController.third > -1 ? "Player " + String(tmpController.third + 1) : " "
-		} else {
-			firstBase.text = tmpController.first > -1 ? players[tmpController.first] : " "
-			secondBase.text = tmpController.second > -1 ? players[tmpController.second] : " "
-			thirdBase.text = tmpController.third > -1 ? players[tmpController.third] : " "
-		}
-		runsText.text = String(tmpController.runs)
-		outsText.text = String(tmpController.outCheck)
+        if (tmpController == nil) {
+            print("Presenting view controller is nil! setting breakpoint here")
+            print("Error")
+        }
+        //let tmpController : CustomController = self.presentingViewController! as! CustomController;
+        if (inntop) {
+            firstBase.text = tmpController!.first > -1 ? "Player " + String(tmpController!.first + 1) : " "
+            secondBase.text = tmpController!.second > -1 ? "Player " + String(tmpController!.second + 1) : " "
+            thirdBase.text = tmpController!.third > -1 ? "Player " + String(tmpController!.third + 1) : " "
+        } else {
+            firstBase.text = tmpController!.first > -1 ? players[tmpController!.first] : " "
+            secondBase.text = tmpController!.second > -1 ? players[tmpController!.second] : " "
+            thirdBase.text = tmpController!.third > -1 ? players[tmpController!.third] : " "
+        }
+        runsText.text = String(tmpController!.runs)
+        outsText.text = String(tmpController!.outCheck)
         print("Done")
 		// Do any additional setup after loading the view, typically from a nib.
 	}
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        print("Getting presenter")
+        if (tmpController == nil) {
+            print("Presenting view controller is nil! setting breakpoint here")
+            print("Error")
+        }
+        //let tmpController : CustomController = self.presentingViewController! as! CustomController;
+        if (inntop) {
+            firstBase.text = tmpController!.first > -1 ? "Player " + String(tmpController!.first + 1) : " "
+            secondBase.text = tmpController!.second > -1 ? "Player " + String(tmpController!.second + 1) : " "
+            thirdBase.text = tmpController!.third > -1 ? "Player " + String(tmpController!.third + 1) : " "
+        } else {
+            firstBase.text = tmpController!.first > -1 ? players[tmpController!.first] : " "
+            secondBase.text = tmpController!.second > -1 ? players[tmpController!.second] : " "
+            thirdBase.text = tmpController!.third > -1 ? players[tmpController!.third] : " "
+        }
+        runsText.text = String(tmpController!.runs)
+        outsText.text = String(tmpController!.outCheck)
+        print("Done")
+    }*/
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
@@ -652,12 +652,34 @@ class CheckController: UIViewController {
 	@IBOutlet var outsText: UILabel!
 	
 	@IBAction func cancel(_ sender: Any) {
-		checkCustomSave = [true, false]
+		//checkCustomSave = [true, false]
 		self.dismiss(animated: true, completion: nil)
 	}
 	
 	@IBAction func save(_ sender: Any) {
-		checkCustomSave = [true, true]
+		//checkCustomSave = [true, true]
+        // Finish saving
+        bases[0] = tmpController!.first
+        bases[1] = tmpController!.second
+        bases[2] = tmpController!.third
+        if (inntop) {awayScore += tmpController!.runs}
+        else {homeScore += tmpController!.runs}
+        outs += tmpController!.outCheck
+        playerid += 1
+        // Exit
+        if (tmpController!.presentingViewController?.presentingViewController == nil) {
+            if (tmpController!.presentingViewController == nil) {
+                print("self.parent is not defined! setting breakpoint here")
+                print("Error")
+            } else {
+                print("self.parent.parent is not defined! setting breakpoint here")
+                print("Error")
+            }
+        }
+        //print("breaking")
+        (tmpController!.presentingViewController?.presentingViewController as! OverviewViewer).updateText()
+        let tmpController2 : UIViewController! = tmpController!.presentingViewController;
+        tmpController2.presentingViewController!.dismiss(animated: true, completion: nil)
 		self.dismiss(animated: true, completion: nil)
 	}
 
