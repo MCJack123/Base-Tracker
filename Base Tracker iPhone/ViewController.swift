@@ -572,8 +572,14 @@ class CustomController: UIViewController {
 			self.present(alert, animated: true, completion: nil)
 			return
 		}
+        print("Adding view")
 		let loginPageView = self.storyboard?.instantiateViewController(withIdentifier: "CheckController")
-		self.present(loginPageView!, animated: true, completion: nil)
+        if (loginPageView == nil) {
+            print("CheckController is not defined! setting breakpoint here")
+            print("Error")
+        }
+        print("Presenting")
+        self.present(loginPageView!, animated: true, completion: nil)
 		while (true) {
 			if (checkCustomSave[0]) {break}
 		}
@@ -587,10 +593,18 @@ class CustomController: UIViewController {
 		outs += outCheck
 		playerid += 1
 		// Exit
-		let appDelegate  = UIApplication.shared.delegate as! AppDelegate
-		let viewController = appDelegate.window!.rootViewController as! OverviewViewer
-		viewController.updateText()
-		let tmpController :UIViewController! = self.presentingViewController;
+        if (self.presentingViewController?.presentingViewController == nil) {
+            if (self.presentingViewController == nil) {
+                print("self.parent is not defined! setting breakpoint here")
+                print("Error")
+            } else {
+                print("self.parent.parent is not defined! setting breakpoint here")
+                print("Error")
+            }
+        }
+        print("breaking")
+		(self.presentingViewController?.presentingViewController as! OverviewViewer).updateText()
+		let tmpController : UIViewController! = self.presentingViewController;
         self.dismiss(animated: true, completion: {()->Void in
 		tmpController.dismiss(animated: true, completion: nil);
         })
@@ -602,13 +616,15 @@ class CheckController: UIViewController {
 
 	@IBOutlet var PlayerTable: UITableView!
 	override func viewDidLoad() {
+        print("Loading")
 		super.viewDidLoad()
 		let navigationBarHeight: CGFloat = 64.0
 		let frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(self.view.frame.size.width), height: navigationBarHeight)
 		let bar = UINavigationBar(frame: frame)
 		bar.items = [self.navigationItem]
 		self.view.addSubview(bar)
-		let tmpController : CustomController! = self.presentingViewController as! CustomController!;
+        print("Getting presenter")
+		let tmpController : CustomController = self.presentingViewController! as! CustomController;
 		if (inntop) {
 			firstBase.text = tmpController.first > -1 ? "Player " + String(tmpController.first + 1) : " "
 			secondBase.text = tmpController.second > -1 ? "Player " + String(tmpController.second + 1) : " "
@@ -620,6 +636,7 @@ class CheckController: UIViewController {
 		}
 		runsText.text = String(tmpController.runs)
 		outsText.text = String(tmpController.outCheck)
+        print("Done")
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 

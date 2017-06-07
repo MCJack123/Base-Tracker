@@ -1144,7 +1144,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Is this correct?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvJ-aO-BFc">
-                                <rect key="frame" x="120" y="91" width="134" height="0.0"/>
+                                <rect key="frame" x="120" y="70" width="134" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
@@ -1229,9 +1229,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Check Positions" id="e9e-z7-L7i">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ek9-cb-HQz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ek9-cb-HQz">
                             <connections>
-                                <action selector="cancel:" destination="qoD-YR-FmX" id="ab1-oW-XEL"/>
+                                <action selector="cancel:" destination="BwT-V3-YV1" id="Sot-We-otV"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="riF-yO-ayc">
@@ -1241,7 +1241,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cancel" destination="ek9-cb-HQz" id="rN3-Sz-578"/>
                         <outlet property="firstBase" destination="tFj-TZ-lgt" id="dfG-jy-pef"/>
                         <outlet property="outsText" destination="ZoY-kn-yHf" id="3NU-bH-5sr"/>
                         <outlet property="runsText" destination="Sh4-a5-eCX" id="KRP-Dd-Air"/>
