@@ -23,6 +23,227 @@ var awayScore = 0
 var oppteamid = -1
 //var checkCustomSave = [false, false]
 
+class Player {
+    var name: String {
+		get {
+			if (customName == nil) {
+				return "Player " + String(id)
+			} else {
+				return customName!
+			}
+		}
+		set(v) {
+			customName = v
+		}
+    }
+	var customName: String?
+    var id: Int
+    var timesAtBat: Int = 0
+    var totalBalls: Int = 0
+    var totalStrikes: Int = 0
+    var totalOuts: Int = 0
+    var totalRuns: Int = 0
+    var totalHits: Int = 0
+    var totalFouls: Int = 0
+	
+	init(number: Int, customName: String? = nil) {
+		self.id = number
+		self.customName = customName
+	}
+	
+	static func == (left: Player, right: Player) -> Bool {
+		return (left.id == right.id && left.name == right.name)
+	}
+}
+
+class Team {
+    var name: String
+    var side: IST = .top
+    var playerCount: Int {
+        return players.count
+    }
+    var players: [Player] = [Player]()
+	
+	init(teamName: String) {
+		self.name = teamName
+	}
+	
+	func getBatter(_ last: Player, _ side: IST) -> Player? {
+		if (self.side == side) {
+			for player in self.players {
+				if player.id == incWithMax(variable: last.id, max: self.playerCount - 1) {
+					return player
+				}
+			}
+		}
+		return nil
+	}
+}
+
+enum GameActionType {
+	case Strike
+	case Ball
+	case Hit
+	case Walk
+	case Move1st
+	case Move2nd
+	case Move3rd
+	case MoveHome
+	case MoveOut
+}
+
+enum IST {
+	case top
+	case bottom
+}
+
+func reverseIST(_ operand: IST) -> IST {
+	if (operand == .top) {
+		return .bottom
+	} else {
+		return .top
+	}
+}
+
+struct GameAction {
+	var player: Player
+	var action: GameActionType
+	var notes: String
+}
+
+class GameState {
+	var strikes: Int = 0
+	var balls: Int = 0
+	var outs: Int = 0
+	var inningSide: IST = IST.top
+	var inning: Int = 1
+	var homeRuns: Int = 0
+	var awayRuns: Int = 0
+	var lastSideBatter: Player = Player(number: 1)
+	var playerPosititons: [Player?] = [Player?]()
+	var getBatter: (Player, IST) -> Player
+	
+	init(_ getf: @escaping (Player, IST) -> Player) {
+		self.getBatter = getf
+	}
+	
+	init(fromActions actions: [GameAction], getBatterFunction getf: @escaping (Player, IST) -> Player) {
+		self.getBatter = getf
+		for action in actions {
+			self.doAction(action)
+		}
+	}
+	
+	func doAction(_ action: GameAction) {
+		switch action.action {
+		case .Strike:
+			self.strikes += 1
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player]!.totalStrikes += 1
+			}
+		case .Ball:
+			self.balls += 1
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player]!.totalBalls += 1
+			}
+		case .Hit:
+			self.playerPosititons[0]?.totalHits += 1
+		case .Move1st:
+			self.playerPosititons[1] = action.player
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player] = nil
+			}
+		case .Move2nd:
+			self.playerPosititons[2] = action.player
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player] = nil
+			}
+		case .Move3rd:
+			self.playerPosititons[3] = action.player
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player] = nil
+			}
+		case .MoveHome:
+			if (self.inningSide == .top) {
+				self.awayRuns += 1
+			} else {
+				self.homeRuns += 1
+			}
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player]!.totalRuns += 1
+				self.playerPosititons[player] = nil
+			}
+		case .MoveOut:
+			self.outs += 1
+			if let player: Int = find(action.player) {
+				self.playerPosititons[player]!.totalBalls += 1
+				self.playerPosititons[player] = nil
+			}
+		case .Walk:
+			var i = 1
+			while i <= 3 {
+				if (self.playerPosititons[i] == nil) {
+					break
+				}
+				i+=1
+			}
+			while i > 0 {
+				if (i == 3) {
+					if (self.inningSide == .top) {
+						self.awayRuns += 1
+					} else {
+						self.homeRuns += 1
+					}
+				} else {
+					self.playerPosititons[i+1] = self.playerPosititons[i]
+				}
+				i-=1
+			}
+			self.playerPosititons[1] = self.playerPosititons[0]
+			self.playerPosititons[0] = getBatter(self.playerPosititons[0]!, self.inningSide)
+		}
+		updateStats()
+	}
+	
+	private func updateStats() {
+		if (self.strikes > 2) {
+			self.strikes = 0
+			self.balls = 0
+			self.outs += 1
+			self.playerPosititons[0] = getBatter(self.playerPosititons[0]!, self.inningSide)
+		}
+		if (self.balls > 3) {
+			self.balls = 0
+			self.strikes = 0
+			doAction(GameAction(player: Player(number: 0), action: .Walk, notes: ""))
+		}
+		if (self.outs > 2) {
+			self.inningSide = reverseIST(self.inningSide)
+			if (inningSide == .top) {
+				inning += 1
+			}
+			self.strikes = 0
+			self.balls = 0
+			self.outs = 0
+			let lastBuffer = self.lastSideBatter
+			self.lastSideBatter = self.playerPosititons[0]!
+			self.playerPosititons = [Player?]()
+			self.playerPosititons[0] = getBatter(lastBuffer, self.inningSide)
+		}
+	}
+	
+	private func find(_ player: Player) -> Int? {
+		var posn = 0
+		for pos in self.playerPosititons {
+			if (pos! == player) {
+				return posn
+			}
+			posn+=1
+		}
+		return nil
+	}
+}
+
 func incWithMax(variable: Int, max: Int, min: Int = 0) -> Int {
 	if (variable + 1 > max) {
 		return min
@@ -197,6 +418,8 @@ class OverviewViewer: UIViewController {
 		case 2:
 			let loginPageView = self.storyboard?.instantiateViewController(withIdentifier: "HitController")
 			self.present(loginPageView!, animated: true, completion: updateText)
+        case 3:
+            strikes += 1
 		default:
 			NSLog("Help! Bat selector is not a value!")
 		}
