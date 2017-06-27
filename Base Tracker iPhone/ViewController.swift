@@ -8,21 +8,6 @@
 
 import UIKit
 
-var strikes = 0
-var balls = 0
-var outs = 0
-var inntop = true
-var inning = 1
-var playerid = 0
-var players = ["Jack", "Tushar", "Thor", "Elliot", "Aidan", "Daniel", "John", "Robert"]
-var oppteamNumber = 7
-var bases = [-1, -1, -1]
-var lastBases = bases
-var homeScore = 0
-var awayScore = 0
-var oppteamid = -1
-//var checkCustomSave = [false, false]
-
 class Player {
     var name: String {
 		get {
@@ -64,14 +49,19 @@ class Team {
     }
     var players: [Player] = [Player]()
 	
-	init(teamName: String) {
+	init(name teamName: String, count teamCount: Int) {
 		self.name = teamName
+		var tc = teamCount
+		while tc >= 0 {
+			self.players[tc-1] = Player(number: tc)
+			tc-=1
+		}
 	}
 	
 	func getBatter(_ last: Player, _ side: IST) -> Player? {
 		if (self.side == side) {
 			for player in self.players {
-				if player.id == incWithMax(variable: last.id, max: self.playerCount - 1) {
+				if player.id == incWithMax(variable: last.id, max: self.playerCount - 1, min: 1) {
 					return player
 				}
 			}
@@ -84,17 +74,19 @@ enum GameActionType {
 	case Strike
 	case Ball
 	case Hit
+	case Foul
 	case Walk
 	case Move1st
 	case Move2nd
 	case Move3rd
 	case MoveHome
 	case MoveOut
+	case NextBatter
 }
 
-enum IST {
-	case top
-	case bottom
+enum IST: String {
+	case top = "Top"
+	case bottom = "Bottom"
 }
 
 func reverseIST(_ operand: IST) -> IST {
@@ -120,18 +112,36 @@ class GameState {
 	var homeRuns: Int = 0
 	var awayRuns: Int = 0
 	var lastSideBatter: Player = Player(number: 1)
-	var playerPosititons: [Player?] = [Player?]()
+	var playerPositions: [Player?] = Array(repeating: nil, count: 4)
 	var getBatter: (Player, IST) -> Player
+	var actions: [GameAction] = [GameAction]()
 	
 	init(_ getf: @escaping (Player, IST) -> Player) {
 		self.getBatter = getf
+		self.playerPositions[0] = getf(Player(number: 0), inningSide)
 	}
 	
 	init(fromActions actions: [GameAction], getBatterFunction getf: @escaping (Player, IST) -> Player) {
 		self.getBatter = getf
+		self.playerPositions[0] = getf(Player(number: 0), inningSide)
+		self.actions = actions
 		for action in actions {
 			self.doAction(action)
 		}
+	}
+	
+	init(asCloneOf clone: GameState) {
+		self.strikes = clone.strikes
+		self.balls = clone.balls
+		self.outs = clone.outs
+		self.inningSide = clone.inningSide
+		self.inning = clone.inning
+		self.homeRuns = clone.homeRuns
+		self.awayRuns = clone.awayRuns
+		self.lastSideBatter = clone.lastSideBatter
+		self.playerPositions = clone.playerPositions
+		self.getBatter = clone.getBatter
+		self.actions = clone.actions
 	}
 	
 	func doAction(_ action: GameAction) {
@@ -139,29 +149,29 @@ class GameState {
 		case .Strike:
 			self.strikes += 1
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player]!.totalStrikes += 1
+				self.playerPositions[player]!.totalStrikes += 1
 			}
 		case .Ball:
 			self.balls += 1
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player]!.totalBalls += 1
+				self.playerPositions[player]!.totalBalls += 1
 			}
 		case .Hit:
-			self.playerPosititons[0]?.totalHits += 1
+			self.playerPositions[0]?.totalHits += 1
 		case .Move1st:
-			self.playerPosititons[1] = action.player
+			self.playerPositions[1] = action.player
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player] = nil
+				self.playerPositions[player] = nil
 			}
 		case .Move2nd:
-			self.playerPosititons[2] = action.player
+			self.playerPositions[2] = action.player
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player] = nil
+				self.playerPositions[player] = nil
 			}
 		case .Move3rd:
-			self.playerPosititons[3] = action.player
+			self.playerPositions[3] = action.player
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player] = nil
+				self.playerPositions[player] = nil
 			}
 		case .MoveHome:
 			if (self.inningSide == .top) {
@@ -170,19 +180,19 @@ class GameState {
 				self.homeRuns += 1
 			}
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player]!.totalRuns += 1
-				self.playerPosititons[player] = nil
+				self.playerPositions[player]!.totalRuns += 1
+				self.playerPositions[player] = nil
 			}
 		case .MoveOut:
 			self.outs += 1
 			if let player: Int = find(action.player) {
-				self.playerPosititons[player]!.totalBalls += 1
-				self.playerPosititons[player] = nil
+				self.playerPositions[player]!.totalBalls += 1
+				self.playerPositions[player] = nil
 			}
 		case .Walk:
 			var i = 1
 			while i <= 3 {
-				if (self.playerPosititons[i] == nil) {
+				if (self.playerPositions[i] == nil) {
 					break
 				}
 				i+=1
@@ -195,13 +205,25 @@ class GameState {
 						self.homeRuns += 1
 					}
 				} else {
-					self.playerPosititons[i+1] = self.playerPosititons[i]
+					self.playerPositions[i+1] = self.playerPositions[i]
 				}
 				i-=1
 			}
-			self.playerPosititons[1] = self.playerPosititons[0]
-			self.playerPosititons[0] = getBatter(self.playerPosititons[0]!, self.inningSide)
+			self.playerPositions[1] = self.playerPositions[0]
+			self.playerPositions[0] = getBatter(self.playerPositions[0]!, self.inningSide)
+		case .Foul:
+			if (self.strikes < 2) {
+				self.strikes += 1
+			}
+			if let player: Int = find(action.player) {
+				self.playerPositions[player]!.totalFouls += 1
+			}
+		case .NextBatter:
+			self.playerPositions[0] = getBatter(self.playerPositions[0]!, self.inningSide)
+			self.strikes = 0
+			self.balls = 0
 		}
+		self.actions.append(action)
 		updateStats()
 	}
 	
@@ -210,7 +232,7 @@ class GameState {
 			self.strikes = 0
 			self.balls = 0
 			self.outs += 1
-			self.playerPosititons[0] = getBatter(self.playerPosititons[0]!, self.inningSide)
+			self.playerPositions[0] = getBatter(self.playerPositions[0]!, self.inningSide)
 		}
 		if (self.balls > 3) {
 			self.balls = 0
@@ -226,15 +248,15 @@ class GameState {
 			self.balls = 0
 			self.outs = 0
 			let lastBuffer = self.lastSideBatter
-			self.lastSideBatter = self.playerPosititons[0]!
-			self.playerPosititons = [Player?]()
-			self.playerPosititons[0] = getBatter(lastBuffer, self.inningSide)
+			self.lastSideBatter = self.playerPositions[0]!
+			self.playerPositions = [Player?]()
+			self.playerPositions[0] = getBatter(lastBuffer, self.inningSide)
 		}
 	}
 	
 	private func find(_ player: Player) -> Int? {
 		var posn = 0
-		for pos in self.playerPosititons {
+		for pos in self.playerPositions {
 			if (pos! == player) {
 				return posn
 			}
@@ -251,6 +273,49 @@ func incWithMax(variable: Int, max: Int, min: Int = 0) -> Int {
 	else {
 		return variable + 1
 	}
+}
+
+var defaults: UserDefaults = UserDefaults.standard
+var registered = false
+
+func registerSettingsBundle() {
+    let appDefaults = [String:AnyObject]()
+    UserDefaults.standard.register(defaults: appDefaults)
+    registered = true
+}
+
+func updateDisplayFromDefaults(){
+    //Get the defaults
+    defaults = UserDefaults.standard
+}
+
+var thisTeam = Team(name: defaults.string(forKey: "tname")!, count: 20)
+var otherTeam = Team(name: "Opposing Team", count: defaults.integer(forKey: "oppnum"))
+
+func getBatter(_ last: Player, _ inn: IST) -> Player {
+	let player = thisTeam.getBatter(last, inn)
+	if (player == nil) {
+		return player!
+	} else {
+		return otherTeam.getBatter(last, inn)!
+	}
+}
+
+var currentGameState = GameState(getBatter)
+var backupGameState = GameState(getBatter)
+
+func doAction(_ action: GameAction) {
+	currentGameState.doAction(action)
+}
+
+func makeBackup() {
+	backupGameState = GameState(asCloneOf: currentGameState)
+}
+
+func swapStates() {
+	let buffer = GameState(asCloneOf: currentGameState)
+	currentGameState = GameState(asCloneOf: backupGameState)
+	backupGameState = buffer
 }
 
 class PlayerViewer: UIViewController {
@@ -321,110 +386,54 @@ class OverviewViewer: UIViewController {
 		updateText()
 	}
 	func updateText() {
-		if (strikes > 2) {
-			strikes = 0
-			balls = 0
-			outs += 1
-			playerid = incWithMax(variable: playerid, max: players.count)
-		}
-		if (balls > 3) {
-			balls = 0
-			strikes = 0
-			playerid = incWithMax(variable: playerid, max: players.count)
-			lastBases = bases
-			if (bases[2] != -1) {
-				bases[2] = -1
-				if (inntop) {
-					awayScore += 1
-				} else {
-					homeScore += 1
-				}
-			}
-			if (bases[1] != -1) {
-				bases[2] = bases[1]
-				bases[1] = -1
-			}
-			if (bases[0] != -1) {
-				bases[1] = bases[0]
-				bases[0] = -1
-			}
-			bases[0] = playerid - 1
-		}
-		if (outs > 2) {
-			outs = 0
-			if (!inntop) {
-				inning += 1
-			}
-			inntop = !inntop
-			let oppt2 = oppteamid
-			oppteamid = playerid
-			playerid = oppt2 + 1
-			strikes = 0
-			balls = 0
-			bases = [-1, -1, -1]
-		}
-		if (inning > 9) {
-			inning = 1
-			inntop = true
-		}
-		strikesText.text = String(strikes)
-		ballsText.text = String(balls)
-		outsText.text = String(outs)
-		awayScoreText.text = String(awayScore)
-		homeScoreText.text = String(homeScore)
-		switch inning {
-			case 1:
-				inningText.text = "1st"
-			case 2:
-				inningText.text = "2nd"
-			case 3:
-				inningText.text = "3rd"
-			case 4:
-				inningText.text = "4th"
-			case 5:
-				inningText.text = "5th"
-			case 6:
-				inningText.text = "6th"
-			case 7:
-				inningText.text = "7th"
-			case 8:
-				inningText.text = "8th"
-			case 9:
-				inningText.text = "9th"
-			default:
-				NSLog("Why is the inning incorrect?")
-		}
-		if (!inntop) {
-			batter.text = players[playerid]
-			runner1.text = bases[0] > -1 ? players[bases[0]] : " "
-			runner2.text = bases[1] > -1 ? players[bases[1]] : " "
-			runner3.text = bases[2] > -1 ? players[bases[2]] : " "
-			tbText.text = "Bottom"
+		strikesText.text = String(currentGameState.strikes)
+		ballsText.text = String(currentGameState.balls)
+		outsText.text = String(currentGameState.outs)
+		awayScoreText.text = String(currentGameState.awayRuns)
+		homeScoreText.text = String(currentGameState.homeRuns)
+		if (currentGameState.inning % 10 == 1) {
+			inningText.text = String(currentGameState.inning) + "st"
+		} else if (currentGameState.inning % 10 == 2) {
+			inningText.text = String(currentGameState.inning) + "nd"
+		} else if (currentGameState.inning % 10 == 3) {
+			inningText.text = String(currentGameState.inning) + "rd"
 		} else {
-			batter.text = "Player " + String(playerid + 1 )
-			runner1.text = bases[0] > -1 ? "Player " + String(bases[0] + 1) : " "
-			runner2.text = bases[1] > -1 ? "Player " + String(bases[1] + 1) : " "
-			runner3.text = bases[2] > -1 ? "Player " + String(bases[2] + 1) : " "
-			tbText.text = "Top"
+			inningText.text = String(currentGameState.inning) + "th"
 		}
+		print("1")
+		runner1.text  = currentGameState.playerPositions[1] != nil ? currentGameState.playerPositions[1]!.name : " "
+		runner2.text  = currentGameState.playerPositions[2] != nil ? currentGameState.playerPositions[2]!.name : " "
+		runner3.text  = currentGameState.playerPositions[3] != nil ? currentGameState.playerPositions[3]!.name : " "
+		print("2")
+		tbText.text = currentGameState.inningSide.rawValue
 	}
 	
 	@IBAction func addBat(_ sender: Any) {
+		var currentAction = GameAction(player: currentGameState.playerPositions[0]!, action: .Strike, notes: "")
 		switch batSelector.selectedSegmentIndex {
 		case 0:
-			strikes += 1
+			currentAction.action = .Strike
 		case 1:
-			balls += 1
+			currentAction.action = .Ball
 		case 2:
 			let loginPageView = self.storyboard?.instantiateViewController(withIdentifier: "HitController")
 			self.present(loginPageView!, animated: true, completion: updateText)
+			return
         case 3:
-            strikes += 1
+            currentAction.action = .Foul
 		default:
 			NSLog("Help! Bat selector is not a value!")
+			return
 		}
+		makeBackup()
+		doAction(currentAction)
 		updateText()
 	}
+	
+	@IBAction func undoAction(_ sender: Any) {
+		swapStates()
+	}
+	
     var shareButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(OverviewViewer.notSupported))
 	
 }
@@ -451,9 +460,9 @@ class GameViewer: UIViewController {
 
 class HitController: UIViewController {
 	
-	var testbases = [-1, -1, -1]
-	var homeRuns = 0
-	var checkOuts = 0
+	var testbases = [Player?]()
+	var homeRunners = [Player]()
+	var checkOutters = [Player]()
 	var beenHit = false
 
 	override func viewDidLoad() {
@@ -463,17 +472,10 @@ class HitController: UIViewController {
 		let bar = UINavigationBar(frame: frame)
 		bar.items = [self.navigationItem]
 		self.view.addSubview(bar)
-		if (inntop) {
-		    player.text = playerid > -1 ? "Player " + String(playerid + 1) : " "
-			base1.text  = bases[0] > -1 ? "Player " + String(bases[0] + 1) : " "
-			base2.text  = bases[1] > -1 ? "Player " + String(bases[1] + 1) : " "
-			base3.text  = bases[2] > -1 ? "Player " + String(bases[2] + 1) : " "
-		} else {
-			player.text = playerid > -1 ? players[playerid] : " "
-			base1.text  = bases[0] > -1 ? players[bases[0]] : " "
-			base2.text  = bases[1] > -1 ? players[bases[1]] : " "
-			base3.text  = bases[2] > -1 ? players[bases[2]] : " "
-		}
+		player.text = currentGameState.playerPositions[0] != nil ? currentGameState.playerPositions[0]!.name : " "
+		base1.text  = currentGameState.playerPositions[1] != nil ? currentGameState.playerPositions[1]!.name : " "
+		base2.text  = currentGameState.playerPositions[2] != nil ? currentGameState.playerPositions[2]!.name : " "
+		base3.text  = currentGameState.playerPositions[3] != nil ? currentGameState.playerPositions[3]!.name : " "
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 
@@ -483,17 +485,11 @@ class HitController: UIViewController {
 	}
 	
 	func updateText() {
-		if (inntop) {
-			base1.text = testbases[0] > -1 ? "Player " + String(testbases[0] + 1) : " "
-			base2.text = testbases[1] > -1 ? "Player " + String(testbases[1] + 1) : " "
-			base3.text = testbases[2] > -1 ? "Player " + String(testbases[2] + 1) : " "
-		} else {
-			base1.text = testbases[0] > -1 ? players[testbases[0]] : " "
-			base2.text = testbases[1] > -1 ? players[testbases[1]] : " "
-			base3.text = testbases[2] > -1 ? players[testbases[2]] : " "
-		}
-		runsText.text = String(homeRuns)
-		outsText.text = String(checkOuts)
+		base1.text  = currentGameState.playerPositions[1] != nil ? currentGameState.playerPositions[1]!.name : " "
+		base2.text  = currentGameState.playerPositions[2] != nil ? currentGameState.playerPositions[2]!.name : " "
+		base3.text  = currentGameState.playerPositions[3] != nil ? currentGameState.playerPositions[3]!.name : " "
+		runsText.text = String(homeRunners.count)
+		outsText.text = String(checkOutters.count)
 		beenHit = true
 	}
 	
@@ -517,15 +513,17 @@ class HitController: UIViewController {
 			return
 		}
 		// Save
-		bases[0] = testbases[0]
-		bases[1] = testbases[1]
-		bases[2] = testbases[2]
-		if (inntop) {awayScore += homeRuns}
-		else {homeScore += homeRuns}
-		outs += checkOuts
-		playerid += 1
-		strikes = 0
-		balls = 0
+		makeBackup()
+		doAction(GameAction(player: testbases[0]!, action: .Move1st, notes: ""))
+		doAction(GameAction(player: testbases[1]!, action: .Move2nd, notes: ""))
+		doAction(GameAction(player: testbases[2]!, action: .Move3rd, notes: ""))
+		for run in homeRunners {
+			doAction(GameAction(player: run, action: .MoveHome, notes: ""))
+		}
+		for out in checkOutters {
+			doAction(GameAction(player: out, action: .MoveOut, notes: ""))
+		}
+		doAction(GameAction(player: Player(number: 0), action: .NextBatter, notes: ""))
 		// Exit
 		let appDelegate  = UIApplication.shared.delegate as! AppDelegate
 		let viewController = appDelegate.window!.rootViewController as! OverviewViewer
@@ -534,59 +532,63 @@ class HitController: UIViewController {
 	}
 	
 	@IBAction func move1st(_ sender: Any) {
-		testbases[0] = playerid
-		testbases[1] = bases[0]
-		testbases[2] = bases[1]
-		homeRuns = 0
-		if (bases[2] > -1) {homeRuns += 1}
+		testbases[0] = currentGameState.playerPositions[0]
+		testbases[1] = currentGameState.playerPositions[1]
+		testbases[2] = currentGameState.playerPositions[2]
+		homeRunners = [Player]()
+		if (currentGameState.playerPositions[3] != nil) {homeRunners.append(currentGameState.playerPositions[3]!)}
+		checkOutters = [Player]()
 		updateText()
 	}
 	
 	@IBAction func move2nd(_ sender: Any) {
-		testbases[0] = -1
-		testbases[1] = playerid
-		testbases[2] = bases[0]
-		homeRuns = 0
-		if (bases[1] > -1) {homeRuns += 1}
-		if (bases[2] > -1) {homeRuns += 1}
+		testbases[0] = nil
+		testbases[1] = currentGameState.playerPositions[0]
+		testbases[2] = currentGameState.playerPositions[1]
+		homeRunners = [Player]()
+		if (currentGameState.playerPositions[2] != nil) {homeRunners.append(currentGameState.playerPositions[2]!)}
+		if (currentGameState.playerPositions[3] != nil) {homeRunners.append(currentGameState.playerPositions[3]!)}
+		checkOutters = [Player]()
 		updateText()
 	}
 	
 	@IBAction func move3rd(_ sender: Any) {
-		testbases[0] = -1
-		testbases[1] = -1
-		testbases[2] = playerid
-		homeRuns = 0
-		if (bases[0] > -1) {homeRuns += 1}
-		if (bases[1] > -1) {homeRuns += 1}
-		if (bases[2] > -1) {homeRuns += 1}
+		testbases[0] = nil
+		testbases[1] = nil
+		testbases[2] = currentGameState.playerPositions[0]
+		homeRunners = [Player]()
+		if (currentGameState.playerPositions[1] != nil) {homeRunners.append(currentGameState.playerPositions[1]!)}
+		if (currentGameState.playerPositions[2] != nil) {homeRunners.append(currentGameState.playerPositions[2]!)}
+		if (currentGameState.playerPositions[3] != nil) {homeRunners.append(currentGameState.playerPositions[3]!)}
+		checkOutters = [Player]()
 		updateText()
 	}
 	
 	@IBAction func move4th(_ sender: Any) {
-		homeRuns = 1
-		if (bases[0] > -1) {homeRuns += 1}
-		if (bases[1] > -1) {homeRuns += 1}
-		if (bases[2] > -1) {homeRuns += 1}
-		testbases[0] = -1
-		testbases[1] = -1
-		testbases[2] = -1
+		homeRunners = [currentGameState.playerPositions[0]!]
+		if (currentGameState.playerPositions[1] != nil) {homeRunners.append(currentGameState.playerPositions[1]!)}
+		if (currentGameState.playerPositions[2] != nil) {homeRunners.append(currentGameState.playerPositions[2]!)}
+		if (currentGameState.playerPositions[3] != nil) {homeRunners.append(currentGameState.playerPositions[3]!)}
+		testbases[0] = nil
+		testbases[1] = nil
+		testbases[2] = nil
+		checkOutters = [Player]()
 		updateText()
 	}
 	
 	@IBAction func moveOut(_ sender: Any) {
-		checkOuts = 1
 		move1st(sender)
-		testbases[0] = -1
+		checkOutters = [currentGameState.playerPositions[0]!]
+		testbases[0] = nil
 		updateText()
 	}
 	
 	@IBAction func flyOut(_ sender: Any) {
-		checkOuts = 1
-		testbases[0] = bases[0]
-		testbases[1] = bases[1]
-		testbases[2] = bases[2]
-		homeRuns = 0
+		checkOutters = [currentGameState.playerPositions[0]!]
+		testbases[0] = currentGameState.playerPositions[1]
+		testbases[1] = currentGameState.playerPositions[2]
+		testbases[2] = currentGameState.playerPositions[3]
+		homeRunners = [Player]()
 		updateText()
 	}
 	
@@ -607,23 +609,13 @@ class CustomController: UIViewController {
 		let bar = UINavigationBar(frame: frame)
 		bar.items = [self.navigationItem]
 		self.view.addSubview(bar)
-		if (inntop) {
-			batterLabel.text = "Player " + String(playerid + 1)
-			if (bases[0] == -1) {label1st.isHidden = true}
-			else {label1st.text = "Player " + String(bases[0] + 1)}
-			if (bases[1] == -1) {label2nd.isHidden = true}
-			else {label2nd.text = "Player " + String(bases[1] + 1)}
-			if (bases[2] == -1) {label3rd.isHidden = true}
-			else {label3rd.text = "Player " + String(bases[2] + 1)}
-		} else {
-			batterLabel.text = players[playerid]
-			if (bases[0] == -1) {label1st.isHidden = true}
-			else {label1st.text = players[bases[0]]}
-			if (bases[1] == -1) {label2nd.isHidden = true}
-			else {label2nd.text = players[bases[1]]}
-			if (bases[2] == -1) {label3rd.isHidden = true}
-			else {label3rd.text = players[bases[2]]}
-		}
+		batterLabel.text = currentGameState.playerPositions[0]!.name
+		if (currentGameState.playerPositions[1] == nil) {label1st.isHidden = true}
+		else {label1st.text = currentGameState.playerPositions[1]!.name}
+		if (currentGameState.playerPositions[2] == nil) {label2nd.isHidden = true}
+		else {label2nd.text = currentGameState.playerPositions[2]!.name}
+		if (currentGameState.playerPositions[3] == nil) {label3rd.isHidden = true}
+		else {label3rd.text = currentGameState.playerPositions[3]!.name}
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 
@@ -675,17 +667,17 @@ class CustomController: UIViewController {
 		gesture3rd.setTranslation(CGPoint.zero, in: label3rd)
 	}
 	
-	var third = -1
-	var second = -1
-	var first = -1
-	var runs = 0
-	var outCheck = 0
+	var third: Player? = nil
+	var second: Player? = nil
+	var first: Player? = nil
+	var runs = [Player]()
+	var outCheck = [Player]()
 	@IBAction func save(_ sender: Any) {
-		third = -1
-		second = -1
-		first = -1
-		runs = 0
-		outCheck = 0
+		third = nil
+		second = nil
+		first = nil
+		runs = [Player]()
+		outCheck = [Player]()
 		// -1 = not set, 0 = first, 1 = second, 2 = third, 3 = home, 4 = out
 		var player1pos = -1
 		var player2pos = -1
@@ -695,101 +687,101 @@ class CustomController: UIViewController {
 		NSLog(String(describing: batterLabel.frame.origin.x) + ", " + String(describing: batterLabel.frame.origin.y))
 		if (batterLabel.frame.origin.x > 135 && batterLabel.frame.origin.x < 235) {
 			if (batterLabel.frame.origin.y > 515 && batterLabel.frame.origin.y < 545) {
-				runs += 1
+				runs.append(currentGameState.playerPositions[0]!)
 				player1pos = 3
 			} else if (batterLabel.frame.origin.y > 360 && batterLabel.frame.origin.y < 390) {
-				second = playerid
+				second = currentGameState.playerPositions[0]!
 				player1pos = 1
 			}
 		}
 		if (batterLabel.frame.origin.y > 435 && batterLabel.frame.origin.y < 465) {
 			if (batterLabel.frame.origin.x > 65 && batterLabel.frame.origin.x < 165) {
-				third = playerid
+				third = currentGameState.playerPositions[0]!
 				player1pos = 2
 			} else if (batterLabel.frame.origin.x > 205 && batterLabel.frame.origin.x < 305) {
-				first = playerid
+				first = currentGameState.playerPositions[0]!
 				player1pos = 0
 			}
 		}
 		if (batterLabel.frame.origin.y > 230 && batterLabel.frame.origin.y < 280) {
-			outCheck += 1
+			outCheck.append(currentGameState.playerPositions[0]!)
 			player1pos = 4
 		}
 		
 		if (label1st.frame.origin.x > 135 && label1st.frame.origin.x < 235) {
 			if (label1st.frame.origin.y > 515 && label1st.frame.origin.y < 545) {
-				runs += 1
+				runs.append(currentGameState.playerPositions[1]!)
 				player2pos = 3
 			} else if (label1st.frame.origin.y > 360 && label1st.frame.origin.y < 390) {
-				second = bases[0]
+				second = currentGameState.playerPositions[1]!
 				player2pos = 1
 			}
 		}
 		if (label1st.frame.origin.y > 435 && label1st.frame.origin.y < 465) {
 			if (label1st.frame.origin.x > 65 && label1st.frame.origin.x < 165) {
-				third = bases[0]
+				third = currentGameState.playerPositions[1]!
 				player2pos = 2
 			} else if (label1st.frame.origin.x > 205 && label1st.frame.origin.x < 305) {
-				first = bases[0]
+				first = currentGameState.playerPositions[1]!
 				player2pos = 0
 			}
 		}
 		if (label1st.frame.origin.y > 230 && label1st.frame.origin.y < 280) {
-			outCheck += 1
+			outCheck.append(currentGameState.playerPositions[1]!)
 			player2pos = 4
 		}
 		
 		if (label2nd.frame.origin.x > 135 && label2nd.frame.origin.x < 235) {
 			if (label2nd.frame.origin.y > 515 && label2nd.frame.origin.y < 545) {
-				runs += 1
+				runs.append(currentGameState.playerPositions[2]!)
 				player3pos = 3
 			} else if (label2nd.frame.origin.y > 360 && label2nd.frame.origin.y < 390) {
-				second = bases[1]
+				second = currentGameState.playerPositions[2]!
 				player3pos = 1
 			}
 		}
 		if (label2nd.frame.origin.y > 435 && label2nd.frame.origin.y < 465) {
 			if (label2nd.frame.origin.x > 65 && label2nd.frame.origin.x < 165) {
-				third = bases[1]
+				third = currentGameState.playerPositions[2]!
 				player3pos = 2
 			} else if (label2nd.frame.origin.x > 205 && label2nd.frame.origin.x < 305) {
-				first = bases[1]
+				first = currentGameState.playerPositions[2]!
 				player3pos = 0
 			}
 		}
 		if (label2nd.frame.origin.y > 230 && label2nd.frame.origin.y < 280) {
-			outCheck += 1
+			outCheck.append(currentGameState.playerPositions[2]!)
 			player3pos = 4
 		}
 		
 		if (label3rd.frame.origin.x > 135 && label3rd.frame.origin.x < 235) {
 			if (label3rd.frame.origin.y > 515 && label3rd.frame.origin.y < 545) {
-				runs += 1
+				runs.append(currentGameState.playerPositions[3]!)
 				player4pos = 3
 			} else if (label3rd.frame.origin.y > 360 && label3rd.frame.origin.y < 390) {
-				second = bases[2]
+				second = currentGameState.playerPositions[3]!
 				player4pos = 1
 			}
 		}
 		if (label3rd.frame.origin.y > 435 && label3rd.frame.origin.y < 465) {
 			if (label3rd.frame.origin.x > 65 && label3rd.frame.origin.x < 165) {
-				third = bases[2]
+				third = currentGameState.playerPositions[3]!
 				player4pos = 2
 			} else if (label3rd.frame.origin.x > 205 && label3rd.frame.origin.x < 305) {
-				first = bases[2]
+				first = currentGameState.playerPositions[3]!
 				player4pos = 0
 			}
 		}
 		if (label3rd.frame.origin.y > 230 && label3rd.frame.origin.y < 280) {
-			outCheck += 1
+			outCheck.append(currentGameState.playerPositions[3]!)
 			player4pos = 4
 		}
 		// Check
-		if ((player1pos == -1) || (player2pos == -1 && bases[0] > -1) || (player3pos == -1 && bases[1] > -1) || (player4pos == -1 && bases[2] > -1)) {
+		if ((player1pos == -1) || (player2pos == -1 && currentGameState.playerPositions[1] != nil) || (player3pos == -1 && currentGameState.playerPositions[2] != nil) || (player4pos == -1 && currentGameState.playerPositions[3] != nil)) {
 			if (player1pos == -1) {NSLog("Player 1 not positioned: " + String(describing: batterLabel.frame.origin.x) + ", " + String(describing: batterLabel.frame.origin.y))}
-			if (player2pos == -1 && bases[0] > -1) {NSLog("Player 2 not positioned: " + String(describing: label1st.frame.origin.x) + ", " + String(describing: label1st.frame.origin.y))}
-			if (player3pos == -1 && bases[1] > -1) {NSLog("Player 3 not positioned: " + String(describing: label2nd.frame.origin.x) + ", " + String(describing: label2nd.frame.origin.y))}
-			if (player4pos == -1 && bases[2] > -1) {NSLog("Player 4 not positioned: " + String(describing: label3rd.frame.origin.x) + ", " + String(describing: label3rd.frame.origin.y))}
+			if (player2pos == -1 && currentGameState.playerPositions[1] != nil) {NSLog("Player 2 not positioned: " + String(describing: label1st.frame.origin.x) + ", " + String(describing: label1st.frame.origin.y))}
+			if (player3pos == -1 && currentGameState.playerPositions[2] != nil) {NSLog("Player 3 not positioned: " + String(describing: label2nd.frame.origin.x) + ", " + String(describing: label2nd.frame.origin.y))}
+			if (player4pos == -1 && currentGameState.playerPositions[3] != nil) {NSLog("Player 4 not positioned: " + String(describing: label3rd.frame.origin.x) + ", " + String(describing: label3rd.frame.origin.y))}
 			let alert = UIAlertController(title: "Field unchanged", message: "Please move all players into position before pressing Save.", preferredStyle: UIAlertControllerStyle.alert)
 			alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
@@ -827,17 +819,11 @@ class CheckController: UIViewController {
             print("Error")
         }
         //let tmpController : CustomController = self.presentingViewController! as! CustomController;
-        if (inntop) {
-            firstBase.text = tmpController!.first > -1 ? "Player " + String(tmpController!.first + 1) : " "
-            secondBase.text = tmpController!.second > -1 ? "Player " + String(tmpController!.second + 1) : " "
-            thirdBase.text = tmpController!.third > -1 ? "Player " + String(tmpController!.third + 1) : " "
-        } else {
-            firstBase.text = tmpController!.first > -1 ? players[tmpController!.first] : " "
-            secondBase.text = tmpController!.second > -1 ? players[tmpController!.second] : " "
-            thirdBase.text = tmpController!.third > -1 ? players[tmpController!.third] : " "
-        }
-        runsText.text = String(tmpController!.runs)
-        outsText.text = String(tmpController!.outCheck)
+		firstBase.text = tmpController!.first != nil ? tmpController!.first!.name : " "
+		secondBase.text = tmpController!.second != nil ? tmpController!.second!.name : " "
+        thirdBase.text = tmpController!.third != nil ? tmpController!.third!.name : " "
+        runsText.text = String(tmpController!.runs.count)
+        outsText.text = String(tmpController!.outCheck.count)
         print("Done")
 		// Do any additional setup after loading the view, typically from a nib.
 	}
@@ -882,13 +868,17 @@ class CheckController: UIViewController {
 	@IBAction func save(_ sender: Any) {
 		//checkCustomSave = [true, true]
         // Finish saving
-        bases[0] = tmpController!.first
-        bases[1] = tmpController!.second
-        bases[2] = tmpController!.third
-        if (inntop) {awayScore += tmpController!.runs}
-        else {homeScore += tmpController!.runs}
-        outs += tmpController!.outCheck
-        playerid += 1
+		makeBackup()
+        if (tmpController!.first != nil) {doAction(GameAction(player: tmpController!.first!, action: .Move1st, notes: ""))}
+        if (tmpController!.second != nil) {doAction(GameAction(player: tmpController!.second!, action: .Move2nd, notes: ""))}
+        if (tmpController!.third != nil) {doAction(GameAction(player: tmpController!.third!, action: .Move3rd, notes: ""))}
+        for run in tmpController!.runs {
+			doAction(GameAction(player: run, action: .MoveHome, notes: ""))
+		}
+		for out in tmpController!.outCheck {
+			doAction(GameAction(player: out, action: .MoveOut, notes: ""))
+		}
+        doAction(GameAction(player: Player(number: -1), action: .NextBatter, notes: ""))
         // Exit
         if (tmpController!.presentingViewController?.presentingViewController == nil) {
             if (tmpController!.presentingViewController == nil) {

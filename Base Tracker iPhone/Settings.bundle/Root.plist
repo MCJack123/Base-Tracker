@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>StringsTable</key>
+	<string>Root</string>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Team Name</string>
+			<key>Key</key>
+			<string>tname</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>Title</key>
+			<string>Team Players</string>
+			<key>File</key>
+			<string>TeamNames</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Is this a home game?</string>
+			<key>Key</key>
+			<string>homeg</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Opposing Team&apos;s Players</string>
+			<key>Key</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSSliderSpecifier</string>
+			<key>Key</key>
+			<string>oppnum</string>
+			<key>DefaultValue</key>
+			<integer>9</integer>
+			<key>MinimumValue</key>
+			<integer>1</integer>
+			<key>MaximumValue</key>
+			<integer>20</integer>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -228,14 +228,14 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Base Tracker Beta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXc-PV-4M0">
-                                <rect key="frame" x="220" y="77" width="139" height="21"/>
+                                <rect key="frame" x="213" y="258" width="139" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2017 JackMacWindows" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk9-Di-fdy">
-                                <rect key="frame" x="213" y="99" width="153" height="16"/>
+                                <rect key="frame" x="206" y="280" width="153" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
@@ -301,6 +301,11 @@
                         <barButtonItem key="leftBarButtonItem" title="Update" id="aZS-Jj-NQO">
                             <connections>
                                 <action selector="updateButton:" destination="BYZ-38-t0r" id="2J0-rW-y3s"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="undo" id="VCN-hs-kKc">
+                            <connections>
+                                <action selector="undoAction:" destination="dkx-z0-nzr" id="N8m-vw-vGB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -15,6 +15,7 @@
 		043201BD1D3EDBC400F3DFD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043201BB1D3EDBC400F3DFD1 /* LaunchScreen.storyboard */; };
 		043201C81D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201C71D3EDBC400F3DFD1 /* Base_Tracker_iPhoneTests.swift */; };
 		043201D31D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043201D21D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift */; };
+		04E40A901F015DF500DE2710 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04E40A8F1F015DF500DE2710 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		043201CE1D3EDBC400F3DFD1 /* Base Tracker iPhoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Base Tracker iPhoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		043201D21D3EDBC400F3DFD1 /* Base_Tracker_iPhoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base_Tracker_iPhoneUITests.swift; sourceTree = "<group>"; };
 		043201D41D3EDBC400F3DFD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04E40A8F1F015DF500DE2710 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				043201B21D3EDBC400F3DFD1 /* AppDelegate.swift */,
 				043201B41D3EDBC400F3DFD1 /* ViewController.swift */,
+				04E40A8F1F015DF500DE2710 /* Settings.bundle */,
 				043201B61D3EDBC400F3DFD1 /* Main.storyboard */,
 				0430AE7E1E4266D3002D1858 /* field.jpg */,
 				043201B91D3EDBC400F3DFD1 /* Assets.xcassets */,
@@ -243,6 +246,7 @@
 			files = (
 				043201BD1D3EDBC400F3DFD1 /* LaunchScreen.storyboard in Resources */,
 				043201BA1D3EDBC400F3DFD1 /* Assets.xcassets in Resources */,
+				04E40A901F015DF500DE2710 /* Settings.bundle in Resources */,
 				0430AE7F1E4266D3002D1858 /* field.jpg in Resources */,
 				043201B81D3EDBC400F3DFD1 /* Main.storyboard in Resources */,
 			);
